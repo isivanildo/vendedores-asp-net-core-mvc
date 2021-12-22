@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using VendedoresWebMvc.Models;
 using VendedoresWebMvc.Data;
+using VendedoresWebMvc.Services;
 
 namespace VendedoresWebMvc
 {
@@ -42,6 +43,7 @@ namespace VendedoresWebMvc
                     builder.MigrationsAssembly("VendedoresWebMvc")));
 
             services.AddScoped<SeedingService>();
+            services.AddScoped<VendedorServico>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
