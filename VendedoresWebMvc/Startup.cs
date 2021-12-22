@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using VendedoresWebMvc.Models;
 
 namespace VendedoresWebMvc
 {
@@ -33,6 +35,10 @@ namespace VendedoresWebMvc
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<VendedoresWebMvcContext>(options =>
+                    options.UseMySql(Configuration.GetConnectionString("VendedoresWebMvcContext"), builder =>
+                    builder.MigrationsAssembly("VendedoresWebMvc")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

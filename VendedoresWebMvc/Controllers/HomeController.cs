@@ -17,7 +17,7 @@ namespace VendedoresWebMvc.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Curso de cadastro de vendedoras MVC Asp.Net Core";
 
             return View();
         }
