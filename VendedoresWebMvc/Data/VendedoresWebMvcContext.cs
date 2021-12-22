@@ -13,6 +13,8 @@ namespace VendedoresWebMvc.Models
         {
         }
 
-        public DbSet<VendedoresWebMvc.Models.Departamentos> Departamentos { get; set; }
+        public DbSet<Departamento> Departamento { get; set; }
+        public DbSet<Vendedor> Vendedor { get; set; }
+        public DbSet<VendaRegistro> VendaRegistro { get; set; }
     }
 }
