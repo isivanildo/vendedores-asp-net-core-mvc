@@ -11,17 +11,17 @@ namespace VendedoresWebMvc.Controllers
 {
     public class VendedoresController : Controller
     {
-        private readonly VendedorServico _vendedor;
+        private readonly VendedorServico _vendedorService;
         private readonly DepartamentoService _departamento;
 
         public VendedoresController(VendedorServico vendedor, DepartamentoService departamento)
         {
-            _vendedor = vendedor;
+            _vendedorService = vendedor;
             _departamento = departamento;
         }
         public IActionResult Index()
         {
-            var lista = _vendedor.FindAll();
+            var lista = _vendedorService.FindAll();
             return View(lista);
         }
         
@@ -36,7 +36,32 @@ namespace VendedoresWebMvc.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Vendedor vendedor)
         {
-            _vendedor.Inserir(vendedor);
+            _vendedorService.Inserir(vendedor);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var obj = _vendedorService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            _vendedorService.Remove(id);
 
             return RedirectToAction(nameof(Index));
         }
